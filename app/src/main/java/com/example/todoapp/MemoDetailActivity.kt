@@ -2,9 +2,12 @@ package com.example.todoapp
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.memo_detail.*
@@ -19,6 +22,9 @@ class MemoDetailActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.memo_detail)
+        setSupportActionBar(detail_toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if(intent.hasExtra("msg"))
         {
             memo_detail.setText(intent.getStringExtra("msg").toString())
@@ -27,8 +33,36 @@ class MemoDetailActivity:AppCompatActivity() {
         root.setOnClickListener {
             hideKeyboard()
         }
-
     }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu,menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId){
+            R.id.otherBtn -> {
+                Log.d("메모 디테일 액티비티 - ","공유하기 버튼 클릭")
+                val textMessage = memo_detail.text.toString()
+                val sendIntent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT,textMessage)
+                    type = "text/plain"
+                }
+                if(sendIntent.resolveActivity(packageManager) != null){
+                    startActivity(sendIntent)
+                }
+                return true
+            }
+            R.id.finishBtn ->{
+                UpdateMemo(intent.getStringExtra("mid")!!.toLong())
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     fun hideKeyboard(){
         val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

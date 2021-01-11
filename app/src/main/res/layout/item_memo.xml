@@ -3,7 +3,6 @@
     android:id="@+id/root"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="65dp">
 
@@ -17,6 +16,8 @@
         app:layout_constraintStart_toEndOf="@+id/created_at"
         app:layout_constraintTop_toTopOf="@+id/created_at" />
     <TextView
+        android:textColor="@color/black"
+
         android:id="@+id/text_memo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,6 +33,7 @@
         app:layout_constraintVertical_bias="0.275" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/created_at"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_memo" />
 
     <View
+        android:layout_marginHorizontal="10dp"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#C5B7B7"

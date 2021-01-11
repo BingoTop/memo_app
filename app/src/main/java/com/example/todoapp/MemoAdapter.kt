@@ -11,7 +11,6 @@ import kotlinx.android.synthetic.main.item_memo.view.*
 import java.text.SimpleDateFormat
 
 class MemoAdapter(val context: Context,var list: List<MemoEntity>,val onDeleteListener: onDeleteListener,val getItemSize: getItemSize ): RecyclerView.Adapter<MemoAdapter.MyViewHolder>(){
-//    private val memoList:List<MemoEntity>?= null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -49,7 +48,6 @@ class MemoAdapter(val context: Context,var list: List<MemoEntity>,val onDeleteLi
                 intent.putExtra("msg",memo.text.toString())
                 intent.putExtra("mid",memo_id.text.toString())
                 itemView.context.startActivity(intent)
-
             }
         }
 

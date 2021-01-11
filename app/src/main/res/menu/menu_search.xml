@@ -5,8 +5,13 @@
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_search_24"
-        android:title="Search"
+        android:title="검색"
         app:showAsAction="always|collapseActionView"
-        />
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+    <item
+        android:id="@+id/search_cancle"
+        android:title="취소"
+        app:showAsAction="always|collapseActionView" />
+
 
 </menu>

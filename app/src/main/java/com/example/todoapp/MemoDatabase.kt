@@ -16,7 +16,7 @@ abstract class MemoDatabase:RoomDatabase() {
         fun getInstance(context: Context):MemoDatabase?{
             if(INSTANCE == null){
                 synchronized(MemoDatabase::class){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,MemoDatabase::class.java,"memo.db")
+                    INSTANCE = Room.databaseBuilder(context.applicationContext,MemoDatabase::class.java,"memo.db").allowMainThreadQueries()
                         .fallbackToDestructiveMigration() // 데이터베이스를 생성하고 나서 중간에 수정이 있을 경우 버전을 올려주고 과거에 데이터를 옮길것이냐 문제가 있는데 fallbackToDestructiveMigration 이전 데이터를 다 드롭함
                         .build()
                 }
